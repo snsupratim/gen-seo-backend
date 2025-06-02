@@ -5,7 +5,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: "https://your-frontend.vercel.app", // replace with actual domain
+    origin: "https://gen-seo-frontend.vercel.app", // replace with actual domain
   })
 );
 
