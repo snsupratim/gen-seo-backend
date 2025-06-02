@@ -3,19 +3,20 @@ const bodyParser = require("body-parser");
 const { spawn } = require("child_process");
 const cors = require("cors");
 
-app.use(
-  cors({
-    origin: "https://gen-seo-frontend.vercel.app", // replace with actual domain
-  })
-);
-
+// ✅ Define app BEFORE using it
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+// ✅ Setup CORS with specific origin
+app.use(
+  cors({
+    origin: "https://gen-seo-frontend.vercel.app", // replace with your frontend domain
+  })
+);
+
 app.use(bodyParser.json());
 
-// Helper to call Python scripts
+// ✅ Helper to call Python scripts
 function runPython(script, input, res) {
   const python = spawn("python", [script, input]);
 
@@ -38,7 +39,7 @@ function runPython(script, input, res) {
   });
 }
 
-// API Routes
+// ✅ API Routes
 app.post("/api/keyword", (req, res) => {
   const { keyword } = req.body;
   runPython("keyword_generator.py", keyword, res);
@@ -85,7 +86,7 @@ app.post("/api/content", (req, res) => {
   });
 });
 
-// Start the server
+// ✅ Start the server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
